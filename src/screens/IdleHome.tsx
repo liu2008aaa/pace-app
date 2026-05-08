@@ -32,8 +32,7 @@ export default function IdleHome() {
 
   const handleStart = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-    // 下一轮：router.push('/pre-run');
-    console.log('[IdleHome] START pressed → /pre-run');
+    router.push('/pre-run');
   };
 
   const handleCoachPress = () => {

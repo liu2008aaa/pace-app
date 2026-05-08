@@ -56,9 +56,30 @@ export default function RootLayout() {
             }}
           >
             <Stack.Screen name="index" />
-            {/* 后续屏：
-            <Stack.Screen name="pre-run" options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
-            <Stack.Screen name="run" options={{ gestureEnabled: false }} />
+            <Stack.Screen
+              name="pre-run"
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
+                gestureEnabled: false,
+              }}
+            />
+            <Stack.Screen
+              name="run"
+              options={{
+                gestureEnabled: false, // 防止从 /run 滑动手势返回，必须长按暂停
+                animation: 'fade',
+              }}
+            />
+            <Stack.Screen
+              name="pause"
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
+                gestureEnabled: false,
+              }}
+            />
+            {/* 后续屏将在 v0.3+ 注册：
             <Stack.Screen name="post-run" />
             <Stack.Screen name="share" options={{ presentation: 'modal' }} />
             <Stack.Screen name="coach" options={{ presentation: 'modal' }} />
