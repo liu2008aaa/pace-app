@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Pace.",
+    "slug": "pace-app",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "pace",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#000000",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.pace.app",
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "audio"],
+        "NSLocationWhenInUseUsageDescription": "Pace 需要使用位置来记录你的跑步路线和速度。",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Pace 需要后台位置以便锁屏后继续记录跑步。",
+        "NSMotionUsageDescription": "Pace 使用动作数据计算步频和燃脂。",
+        "NSHealthShareUsageDescription": "Pace 读取心率、HRV、睡眠数据来计算你的恢复指数。",
+        "NSHealthUpdateUsageDescription": "Pace 把跑步记录写回 Apple 健康，与其他 APP 共享。"
+      }
+    },
+    "android": {
+      "package": "com.pace.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#000000"
+      }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
