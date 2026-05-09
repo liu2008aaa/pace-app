@@ -36,7 +36,6 @@ export default function Paused() {
   const heartRate = useRunStore((s) => s.heartRate);
   const resumeRun = useRunStore((s) => s.resumeRun);
   const endRun = useRunStore((s) => s.endRun);
-  const reset = useRunStore((s) => s.reset);
 
   const handleContinue = () => {
     resumeRun();
@@ -46,18 +45,16 @@ export default function Paused() {
   const handleEnd = () => {
     Alert.alert(
       '结束本次跑步？',
-      `已跑 ${formatDistance(distance)} km · ${formatDuration(duration)}\n\n确认后将保存到历史并返回首页。`,
+      `已跑 ${formatDistance(distance)} km · ${formatDuration(duration)}\n\n确认后会保存到历史并查看总结。`,
       [
         { text: '继续跑步', style: 'cancel' },
         {
           text: '确认结束',
           style: 'destructive',
           onPress: () => {
-            endRun();
-            // TODO v0.3: 跳到 /post-run 显示总结，目前直接回首页
-            reset();
+            endRun(); // 写入 historyStore + 设状态为 ended（store 字段保留供 PostRun 读取）
             router.dismissAll();
-            router.replace('/');
+            router.replace('/post-run');
           },
         },
       ]

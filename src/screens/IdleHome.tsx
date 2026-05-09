@@ -25,10 +25,24 @@ import { DialCard } from '@/src/components/DialCard';
 import { StartButton } from '@/src/components/StartButton';
 import { TimelineDots } from '@/src/components/TimelineDots';
 import { Hairline } from '@/src/components/Hairline';
+import { useHistoryStore } from '@/src/stores/historyStore';
+import { formatPace, formatDistance } from '@/src/lib/format';
 import { colors, fonts, mockData } from '@/src/theme';
 
 export default function IdleHome() {
   const router = useRouter();
+  const latestRun = useHistoryStore((s) => s.runs[0]);
+
+  // 计算「上次跑步」展示文本：优先用 historyStore，没有则用 mock
+  const lastRunDate = latestRun
+    ? formatRunDate(new Date(latestRun.startedAt))
+    : mockData.lastRun.date;
+  const lastRunDistance = latestRun
+    ? formatDistance(latestRun.distance)
+    : mockData.lastRun.distance.toFixed(2);
+  const lastRunPace = latestRun
+    ? formatPace(latestRun.avgPace)
+    : mockData.lastRun.pace;
 
   const handleStart = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
@@ -140,12 +154,12 @@ export default function IdleHome() {
         {/* START 按钮 */}
         <StartButton onPress={handleStart} />
 
-        {/* 上次跑步 */}
+        {/* 上次跑步（优先读 historyStore） */}
         <View style={styles.lastRunRow}>
           <Text style={styles.lastRunLabel}>上次</Text>
           <Text style={styles.lastRunData}>
-            &nbsp;{mockData.lastRun.date} &nbsp;·&nbsp; {mockData.lastRun.distance} km &nbsp;·&nbsp;{' '}
-            {mockData.lastRun.pace}
+            &nbsp;{lastRunDate} &nbsp;·&nbsp; {lastRunDistance} km &nbsp;·&nbsp;{' '}
+            {lastRunPace}
             <Text style={styles.lastRunDataDim}>/km</Text>
           </Text>
         </View>
@@ -352,3 +366,8 @@ const styles = StyleSheet.create({
     letterSpacing: 2.13, // 0.25em
   },
 });
+
+// 把 Date → "5月3日" 中文格式
+function formatRunDate(d: Date): string {
+  return `${d.getMonth() + 1}月${d.getDate()}日`;
+}

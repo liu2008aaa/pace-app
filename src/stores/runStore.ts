@@ -19,6 +19,7 @@
  */
 
 import { create } from 'zustand';
+import { useHistoryStore, generateMockSplits, type Run } from './historyStore';
 
 /** 跑步会话状态 */
 export type RunState = 'idle' | 'preRun' | 'running' | 'paused' | 'ended';
@@ -137,8 +138,23 @@ export const useRunStore = create<RunStore>((set, get) => ({
 
   endRun: () => {
     clearTick();
+    const s = get();
+    // 只有当跑步真正发生过（距离 > 0）才写入历史
+    if (s.distance > 0 && s.duration > 0) {
+      const avgPace = (s.duration / (s.distance / 1000)); // 秒/公里
+      const run: Run = {
+        id: String(s.startedAt ?? Date.now()),
+        startedAt: s.startedAt ?? Date.now(),
+        duration: s.duration,
+        distance: s.distance,
+        avgPace,
+        avgHR: s.heartRate || 152,
+        splits: generateMockSplits(s.distance),
+        type: 'outdoor',
+      };
+      useHistoryStore.getState().addRun(run);
+    }
     set({ state: 'ended' });
-    // TODO: 写入 AsyncStorage 持久化历史，触发 Phone 04 结束页
   },
 
   reset: () => {

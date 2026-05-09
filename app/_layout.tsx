@@ -79,9 +79,21 @@ export default function RootLayout() {
                 gestureEnabled: false,
               }}
             />
-            {/* 后续屏将在 v0.3+ 注册：
-            <Stack.Screen name="post-run" />
-            <Stack.Screen name="share" options={{ presentation: 'modal' }} />
+            <Stack.Screen
+              name="post-run"
+              options={{
+                animation: 'slide_from_bottom',
+                gestureEnabled: false,
+              }}
+            />
+            <Stack.Screen
+              name="share"
+              options={{
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
+              }}
+            />
+            {/* 后续屏将在 v0.4+ 注册：
             <Stack.Screen name="coach" options={{ presentation: 'modal' }} />
             <Stack.Screen name="settings" options={{ presentation: 'modal' }} />
             */}
