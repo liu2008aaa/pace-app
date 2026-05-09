@@ -14,8 +14,6 @@ import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 
-import { PhoneStatusBar } from '@/src/components/PhoneStatusBar';
-import { LiveActivity } from '@/src/components/LiveActivity';
 import { PaceHuge } from '@/src/components/PaceHuge';
 import { HRZoneBar } from '@/src/components/HRZoneBar';
 import { ActionButton } from '@/src/components/ActionButton';
@@ -68,10 +66,6 @@ export default function Paused() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
-      <LiveActivity mode="paused" duration={durationText} />
-
-      <PhoneStatusBar time="9:58" signal={4} battery={87} />
-
       <ScrollView
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}

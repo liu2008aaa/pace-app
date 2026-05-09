@@ -15,7 +15,6 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 
-import { PhoneStatusBar } from '@/src/components/PhoneStatusBar';
 import { CountdownRing } from '@/src/components/CountdownRing';
 import { ChecklistRow } from '@/src/components/ChecklistRow';
 import { useRunStore } from '@/src/stores/runStore';
@@ -38,8 +37,6 @@ export default function PreRun() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
-      <PhoneStatusBar time="9:42" signal={4} battery={87} />
-
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         {/* Top brand strip */}
         <View style={styles.brandStrip}>

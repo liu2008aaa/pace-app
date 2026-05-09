@@ -20,7 +20,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 
-import { PhoneStatusBar } from '@/src/components/PhoneStatusBar';
 import { DialCard } from '@/src/components/DialCard';
 import { StartButton } from '@/src/components/StartButton';
 import { TimelineDots } from '@/src/components/TimelineDots';
@@ -62,9 +61,7 @@ export default function IdleHome() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
-      {/* 真实 iOS 状态栏 — 隐藏自带，用我们仿的 */}
-      <PhoneStatusBar time="9:41" signal={4} battery={87} />
-
+      {/* iOS 真实状态栏由 _layout.tsx 的 <StatusBar style="light" /> 控制 */}
       <ScrollView
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}

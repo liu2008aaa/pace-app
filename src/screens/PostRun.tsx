@@ -21,7 +21,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 
-import { PhoneStatusBar } from '@/src/components/PhoneStatusBar';
 import { AIInsight } from '@/src/components/AIInsight';
 import { RouteMap } from '@/src/components/RouteMap';
 import { PaceCurve } from '@/src/components/PaceCurve';
@@ -80,12 +79,6 @@ export default function PostRun() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
-      <PhoneStatusBar
-        time={`${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`}
-        signal={4}
-        battery={87}
-      />
-
       <ScrollView
         contentContainerStyle={styles.scroll}
         showsVerticalScrollIndicator={false}

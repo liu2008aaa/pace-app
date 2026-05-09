@@ -23,8 +23,6 @@ import * as Haptics from 'expo-haptics';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS } from 'react-native-reanimated';
 
-import { PhoneStatusBar } from '@/src/components/PhoneStatusBar';
-import { LiveActivity } from '@/src/components/LiveActivity';
 import { PaceHuge } from '@/src/components/PaceHuge';
 import { HRZoneBar } from '@/src/components/HRZoneBar';
 import { HRCard } from '@/src/components/HRCard';
@@ -65,14 +63,8 @@ export default function InRun() {
 
   return (
     <SafeAreaView style={styles.root} edges={['top', 'bottom']}>
-      <LiveActivity
-        mode="running"
-        distance={`${distanceText} km`}
-        pace={paceText}
-      />
-
-      <PhoneStatusBar time="9:58" signal={4} battery={87} />
-
+      {/* 真实灵动岛需要 ActivityKit + EAS Build, Expo Go 无法访问;
+          PhoneStatusBar 已删, 由 iOS 真状态栏 + _layout.tsx StatusBar 处理 */}
       <GestureDetector gesture={longPress}>
         <ScrollView
           contentContainerStyle={styles.scroll}
