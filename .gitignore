@@ -27,6 +27,9 @@ web-build/
 .DS_Store
 Thumbs.db
 
+# Local backups
+*.bak
+
 # Logs
 npm-debug.*
 yarn-debug.*
